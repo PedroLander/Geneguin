@@ -77,27 +77,27 @@ class Menubar(tk.Menu):
 		self.add_cascade(label="Help", menu=self.helpmenu)
 		
 class Statusbar(tk.Frame): 
-		def __init__(self, parent, *args, **kwargs):
-			tk.Frame.__init__(self, parent, *args, **kwargs)
+	def __init__(self, parent, *args, **kwargs):
+		tk.Frame.__init__(self, parent, *args, **kwargs)
 			
-			#Tabs
-			# create a notebook
-			notebook = ttk.Notebook(self)
-			notebook.pack(pady=10, expand=True)
-			
-			# create frames
-			frame1 = ttk.Frame(notebook, width=400, height=280)
-			frame2 = ttk.Frame(notebook, width=400, height=280)
-			frame3 = ttk.Frame(notebook, width=400, height=280)
-			
-			frame1.pack(fill='both', expand=True)
-			frame2.pack(fill='both', expand=True)
-			frame3.pack(fill='both', expand=True)
-			
-			# add frames to notebook
-			notebook.add(frame1, text='Status')
-			notebook.add(frame2, text='Messages')
-			notebook.add(frame3, text='Terminal')
+		#Tabs
+		# create a notebook
+		notebook = ttk.Notebook(self)
+		notebook.pack(pady=10, expand=True)
+
+		# create frames
+		frame1 = ttk.Frame(notebook, width=400, height=280)
+		frame2 = ttk.Frame(notebook, width=400, height=280)
+		frame3 = ttk.Frame(notebook, width=400, height=280)
+
+		frame1.pack(fill='both', expand=True)
+		frame2.pack(fill='both', expand=True)
+		frame3.pack(fill='both', expand=True)
+
+		# add frames to notebook
+		notebook.add(frame1, text='Status')
+		notebook.add(frame2, text='Messages')
+		notebook.add(frame3, text='Terminal')
 
 class MainApplication(tk.Frame):
     def __init__(self, parent, *args, **kwargs):
