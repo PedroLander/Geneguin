@@ -6,6 +6,8 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter.messagebox import showinfo
 
+sequence = "atcccgcgcgttgcgatgat"
+
 class Navbar(tk.Frame): 
 	def __init__(self, parent, *args, **kwargs):
 		tk.Frame.__init__(self, parent, *args, **kwargs)
@@ -38,16 +40,38 @@ class Viewbar(tk.Frame):
 		notebook = ttk.Notebook(self)
 		notebook.pack(pady=10, expand=True)
 		
-		# create frames
-		frame1 = ttk.Frame(notebook, width=400, height=280)
-		frame2 = ttk.Frame(notebook, width=400, height=280)
 		
-		frame1.pack(fill='both', expand=True)
-		frame2.pack(fill='both', expand=True)
+		# Sequence View
+		## Containter Sequence View Frame
+		sequence_frame= ttk.Frame(notebook, width=400, height=280)
+		
+		## Sequence View Canvas
+		sequence_canvas= tk.Canvas(sequence_frame,bg="black")
+		sequence_canvas.pack(fill='both', expand=True)
+		
+		## Sequence View Canvas Drawings
+		sequence_canvas.create_text(200, 100, 
+		fill="white", text=sequence)
+		
+		# Map View
+		## Containter Map View Frame
+		map_frame= ttk.Frame(notebook, width=400, height=280)
+		
+				## Map View Canvas
+		map_canvas= tk.Canvas(map_frame,bg="black")
+		map_canvas.pack(fill='both', expand=True)
+		
+		## Map View Canvas Drawings
+		map_canvas.create_rectangle(30, 30, 180, 120,
+		outline="#fb0",fill="#fb0")
+
+
+		sequence_frame.pack(fill='both', expand=True)
+		map_frame.pack(fill='both', expand=True)
 		
 		# add frames to notebook
-		notebook.add(frame1, text='View 1')
-		notebook.add(frame2, text='View2')
+		notebook.add(sequence_frame, text='Sequence View')
+		notebook.add(map_frame, text='Map View')
 		
 class Menubar(tk.Menu): 
 	def __init__(self, parent, *args, **kwargs):
