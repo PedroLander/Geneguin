@@ -29,55 +29,54 @@ class Navbar(tk.Frame):
 		tree.move(6, 1, 1)
 
 		tree.pack(side='left', fill='y', expand=True)
-				
 		
 class Viewbar(tk.Frame): 
-		def __init__(self, parent, *args, **kwargs):
-			tk.Frame.__init__(self, parent, *args, **kwargs)
-			
-			#Tabs
-			# create a notebook
-			notebook = ttk.Notebook(self)
-			notebook.pack(pady=10, expand=True)
-			
-			# create frames
-			frame1 = ttk.Frame(notebook, width=400, height=280)
-			frame2 = ttk.Frame(notebook, width=400, height=280)
-			
-			frame1.pack(fill='both', expand=True)
-			frame2.pack(fill='both', expand=True)
-			
-			# add frames to notebook
-			notebook.add(frame1, text='View 1')
-			notebook.add(frame2, text='View2')
-			
-		
-class Toolbar(tk.Frame): 
 	def __init__(self, parent, *args, **kwargs):
 		tk.Frame.__init__(self, parent, *args, **kwargs)
-		menubar = tk.Menu(root)
-		filemenu = tk.Menu(menubar, tearoff=0)
-		filemenu.add_command(label="New")#, command=donothing)
-		filemenu.add_command(label="Open")#, command=load)
-		filemenu.add_command(label="Save")#, command=save)
-		filemenu.add_separator()
-		filemenu.add_command(label="Exit",)# command=root.quit)
-		menubar.add_cascade(label="File", menu=filemenu)
+		#Tabs
+		# create a notebook
+		notebook = ttk.Notebook(self)
+		notebook.pack(pady=10, expand=True)
+		
+		# create frames
+		frame1 = ttk.Frame(notebook, width=400, height=280)
+		frame2 = ttk.Frame(notebook, width=400, height=280)
+		
+		frame1.pack(fill='both', expand=True)
+		frame2.pack(fill='both', expand=True)
+		
+		# add frames to notebook
+		notebook.add(frame1, text='View 1')
+		notebook.add(frame2, text='View2')
+	
+		
+class Menubar(tk.Menu): 
+	def __init__(self, parent, *args, **kwargs):
+		tk.Menu.__init__(self, parent, *args, **kwargs)
+		
+		self.filemenu = tk.Menu(self, tearoff=0)
+		self.filemenu .add_command(label="New")#, command=donothing)
+		self.filemenu .add_command(label="Open")#, command=load)
+		self.filemenu .add_command(label="Save")#, command=save)
+		self.filemenu .add_separator()
+		self.filemenu .add_command(label="Exit", command=root.quit)
+		self.add_cascade(label="File", menu=self.filemenu)
 
-		editmenu = tk.Menu(menubar, tearoff=0)
-		editmenu.add_command(label="Delete")#, command=dltlb1)
-		menubar.add_cascade(label="Edit", menu=editmenu)
+		self.editmenu = tk.Menu(self, tearoff=0)
+		self.editmenu.add_command(label="Delete")#, command=dltlb1)
+		self.add_cascade(label="Edit", menu=self.editmenu)
 
-		toolmenu = tk.Menu(menubar, tearoff=0)
-		toolmenu.add_command(label="Replicate",)# command=replicate)
-		toolmenu.add_command(label="Transcribe")#, command=transcribe)
-		toolmenu.add_command(label="Translate")#, command=translate)
-		menubar.add_cascade(label="Tools", menu=toolmenu)
+		self.toolmenu = tk.Menu(self, tearoff=0)
+		self.toolmenu.add_command(label="Replicate",)# command=replicate)
+		self.toolmenu.add_command(label="Transcribe")#, command=transcribe)
+		self.toolmenu.add_command(label="Translate")#, command=translate)
+		self.add_cascade(label="Tools", menu=self.toolmenu)
 
-		helpmenu = tk.Menu(menubar, tearoff=0)
-		helpmenu.add_command(label="Help Index")#, command=donothing)
-		helpmenu.add_command(label="About...")#, command=donothing)
-		menubar.add_cascade(label="Help", menu=helpmenu)
+		self.helpmenu = tk.Menu(self, tearoff=0)
+		self.helpmenu.add_command(label="Help Index")#, command=donothing)
+		self.helpmenu.add_command(label="About...")#, command=donothing)
+		self.add_cascade(label="Help", menu=self.helpmenu)
+		
 class Statusbar(tk.Frame): 
 		def __init__(self, parent, *args, **kwargs):
 			tk.Frame.__init__(self, parent, *args, **kwargs)
@@ -105,13 +104,10 @@ class MainApplication(tk.Frame):
     def __init__(self, parent, *args, **kwargs):
         tk.Frame.__init__(self, parent, *args, **kwargs)
         self.navbar = Navbar(self)
-        self.toolbar = Toolbar(self)
         self.viewbar = Viewbar(self)
         self.statusbar = Statusbar(self)
         
-
         self.navbar.pack(side="left", fill="y", expand=True)
-        self.toolbar.pack(side="top", fill="x")
         self.viewbar.pack(side="top", fill="x", expand=True)
         self.statusbar.pack(side="top", fill="x", expand=True)
         
@@ -119,5 +115,9 @@ if __name__ == "__main__":
     root = tk.Tk()
     root.geometry('600x400')
     root.title('Geneguin')
+    
+    menubar = Menubar(root)
+    root.config (menu=menubar)
+    
     MainApplication(root).pack(side="top", fill="both", expand=True)
     root.mainloop()
