@@ -4,7 +4,7 @@ import tkinter as tk
 class MyCanvas(tk.Canvas): 
 	def __init__(self,parent):
 		super().__init__()
-		self.configure(bg='red')
+		self.configure(bg='black')
 
 if __name__=="__main__":
 	root = tk.Tk()

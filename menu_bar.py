@@ -1,4 +1,5 @@
 import tkinter as tk
+from tools import plot_rectangle
 
 class MenuBar(tk.Menu):
 	def __init__(self, parent):
@@ -11,7 +12,7 @@ class MenuBar(tk.Menu):
 
 		# add a menu item to the menu
 		file_menu.add_command(label='Exit', command=parent.destroy)
-		edit_menu.add_command(label='Plot')
+		edit_menu.add_command(label='Plot', command= lambda : plot_rectangle(canvas1))
 		tools_menu.add_command(label='About')
 
 
