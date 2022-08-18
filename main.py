@@ -3,7 +3,8 @@ from tkinter import ttk
 from navigation_panel import NavPanel
 from view_panel import ViewPanel
 from control_panel import ControlPanel
-from canvas import MyCanvas
+from canvas import MapCanvas, SeqCanvas
+from view import MyView
 import tools
 
 class MenuBar(tk.Menu):
@@ -18,7 +19,8 @@ class MenuBar(tk.Menu):
 		# add a menu item to the menu
 		file_menu.add_command(label='Exit', command=parent.destroy)
 		file_menu.add_command(label='Open', command= lambda : tools.open_file(navPanel1))
-		edit_menu.add_command(label='Plot', command= lambda : tools.plot_arrow(canvas1))
+		edit_menu.add_command(label='Plot arrow', command= lambda : tools.plot_arrow(mapCanvas))
+		edit_menu.add_command(label='Plot text', command= lambda : tools.plot_text(seqCanvas))
 		tools_menu.add_command(label='About')
 
 		# add the File menu to the menubar
@@ -44,22 +46,22 @@ if __name__=="__main__":
 	viewPanel1= ViewPanel(root)
 	viewPanel1.pack(fill='both', expand=True)
 	
-	canvas1 = MyCanvas(viewPanel1)
-	canvas1.pack(side = 'top', fill = 'both', expand = True)
+	mapCanvas = MapCanvas(viewPanel1)
+	mapCanvas.pack(side = 'top', fill = 'both', expand = True)
 	
-	canvas2 = MyCanvas(viewPanel1)
-	canvas2.pack(side = 'top', fill = 'both', expand = True)
+	seqCanvas = SeqCanvas(viewPanel1)
+	seqCanvas.pack(side = 'top', fill = 'both', expand = True)
 	
-	viewPanel1.add(canvas1, text= 'Canvas 1')
-	viewPanel1.add(canvas2, text= 'Canvas 2')
+	viewPanel1.add(mapCanvas, text= 'Map View')
+	viewPanel1.add(seqCanvas, text= 'Sequence View')
 	
 	#Control Panel
 	controlPanel1= ViewPanel(root)
 	controlPanel1.pack(fill='both', expand=True)
 	
-	canvas3= MyCanvas(viewPanel1)
+	canvas3= MyView(viewPanel1)
 	canvas3.pack(fill = 'both', expand = True)
-	canvas4 = MyCanvas(viewPanel1)
+	canvas4 = MyView(viewPanel1)
 	canvas4.pack(fill = 'both', expand = True)
 	
 	controlPanel1.add(canvas3, text= 'Canvas 3')

@@ -8,6 +8,7 @@ class NavPanel(ttk.Treeview):
 		
 		self.heading('#0', text='Documents', anchor=tk.W)
 
+		self.bind('<Double-1>', self.on_dclick) 
 
 		# # adding data
 		# self.insert('', tk.END, text='Folder 1', iid=0, open=False)
@@ -20,9 +21,13 @@ class NavPanel(ttk.Treeview):
 		# self.insert('', tk.END, text='File 2' ,iid=6, open=False)
 		# self.move(5, 1, 0)
 		# self.move(6, 1, 1)
+		
+	def on_dclick(self, event):
+		selection = self.selection()
+		print('Selection is %s' % ascii(selection))
 
 	def add_data(self, data):
-		self.insert('', tk.END, text=data, iid=0, open=False)
+		self.insert('', tk.END, text=data, iid=data, open=False)
 
 
 if __name__=="__main__":

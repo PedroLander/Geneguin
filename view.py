@@ -1,6 +1,5 @@
 from tkinter import ttk
 import tkinter as tk
-from canvas import MyCanvas
 
 class MyView(tk.Frame): 
 	def __init__(self,parent):

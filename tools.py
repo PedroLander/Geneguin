@@ -14,6 +14,15 @@ def plot_arrow(canvas):
 	0,10], outline='white', fill='yellow', width=2)
 
 
+def plot_text(canvas):
+	canvas.create_text(
+	canvas.winfo_width()/2,
+	canvas.winfo_height()*2/3, 
+	text="HELLO WORLD", 
+	fill="white", 
+	font=('Helvetica 15 bold'))
+
+
 def open_file(navPanel):
 	file = askopenfile(mode ='r', filetypes =[('Fasta Files', '*.fa')])
 	if file is not None:
@@ -21,3 +30,4 @@ def open_file(navPanel):
 		print(file.name.split('/')[-1], content)
 		
 		navPanel.add_data(file.name.split('/')[-1])
+
