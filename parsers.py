@@ -1,11 +1,21 @@
-def parse_fasta(text):
+import global_variables
+
+def parse_fasta(text,):
 	#takes a string
 	#returns a dictionary
+
 	result = {}
+
 	text = text.split('>')
+
 	for item in text:
-		item = item.replace(r'"\n"', '')
-	print (text)
+
+		if len(item)>0:
+
+			result[item.split('\n')[0]] = ''.join(item.split('\n')[1::])
+			global_variables.sequences[item.split('\n')[0]] = ''.join(item.split('\n')[1::])
+
+	return result
 
 
 

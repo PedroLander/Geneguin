@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+from tools import load_sequence
 
 # create a treeview
 class NavPanel(ttk.Treeview): 
@@ -8,7 +9,7 @@ class NavPanel(ttk.Treeview):
 		
 		self.heading('#0', text='Documents', anchor=tk.W)
 
-		self.bind('<Double-1>', self.on_dclick) 
+		self.bind('<Double-1>', self.on_dclick)
 
 		# # adding data
 		# self.insert('', tk.END, text='Folder 1', iid=0, open=False)
@@ -22,12 +23,19 @@ class NavPanel(ttk.Treeview):
 		# self.move(5, 1, 0)
 		# self.move(6, 1, 1)
 		
+
+	def add_data(self, filename, seqs):
+		self.insert('', tk.END, text=filename, iid=filename, open=False)
+		child = -1
+		for seq in seqs:
+			child+=1
+			self.insert('', tk.END, text=seq, iid=seq, open=False)
+			self.move(seq, filename, child)
+
 	def on_dclick(self, event):
 		selection = self.selection()
 		print('Selection is %s' % ascii(selection))
-
-	def add_data(self, data):
-		self.insert('', tk.END, text=data, iid=data, open=False)
+		load_sequence(selection)
 
 
 if __name__=="__main__":

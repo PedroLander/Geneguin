@@ -6,6 +6,7 @@ from control_panel import ControlPanel
 from canvas import MapCanvas, SeqCanvas
 from view import MyView
 import tools
+import global_variables
 
 class MenuBar(tk.Menu):
 	def __init__(self, parent):
@@ -31,7 +32,7 @@ class MenuBar(tk.Menu):
 
 if __name__=="__main__":
 	root = tk.Tk()
-	root.title('MenuBar Widget')
+	root.title('Geneguin 🐧')
 	root.geometry('800x500')
 	
 	#Menu bar
@@ -46,14 +47,14 @@ if __name__=="__main__":
 	viewPanel1= ViewPanel(root)
 	viewPanel1.pack(fill='both', expand=True)
 	
-	mapCanvas = MapCanvas(viewPanel1)
-	mapCanvas.pack(side = 'top', fill = 'both', expand = True)
+	global_variables.mapCanvas = MapCanvas(viewPanel1)
+	global_variables.mapCanvas.pack(side = 'top', fill = 'both', expand = True)
 	
 	seqCanvas = SeqCanvas(viewPanel1)
 	seqCanvas.pack(side = 'top', fill = 'both', expand = True)
 	
-	viewPanel1.add(mapCanvas, text= 'Map View')
-	viewPanel1.add(seqCanvas, text= 'Sequence View')
+	viewPanel1.add(global_variables.mapCanvas, text= 'Sequence View')
+	viewPanel1.add(seqCanvas, text= 'Map View')
 	
 	#Control Panel
 	controlPanel1= ViewPanel(root)
