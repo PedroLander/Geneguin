@@ -17,6 +17,7 @@ class MenuBar(tk.Menu):
 
 		# add a menu item to the menu
 		file_menu.add_command(label='Exit', command=parent.destroy)
+		file_menu.add_command(label='Open', command= lambda : tools.open_file(navPanel1))
 		edit_menu.add_command(label='Plot', command= lambda : tools.plot_arrow(canvas1))
 		tools_menu.add_command(label='About')
 
