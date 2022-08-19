@@ -11,19 +11,6 @@ class NavPanel(ttk.Treeview):
 
 		self.bind('<Double-1>', self.on_dclick)
 
-		# # adding data
-		# self.insert('', tk.END, text='Folder 1', iid=0, open=False)
-		# self.insert('', tk.END, text='Folder 2', iid=1, open=False)
-		# self.insert('', tk.END, text='Folder 3', iid=2, open=False)
-		# self.insert('', tk.END, text='Folder 4', iid=3, open=False)
-
-		# # adding children of first node
-		# self.insert('', tk.END, text='File 1', iid=5, open=False)
-		# self.insert('', tk.END, text='File 2' ,iid=6, open=False)
-		# self.move(5, 1, 0)
-		# self.move(6, 1, 1)
-		
-
 	def add_data(self, filename, seqs):
 		self.insert('', tk.END, text=filename, iid=filename, open=False)
 		child = -1
@@ -34,9 +21,7 @@ class NavPanel(ttk.Treeview):
 
 	def on_dclick(self, event):
 		selection = self.selection()
-		print('Selection is %s' % ascii(selection))
-		tools.load_nuc_sequence(selection)
-		tools.load_map_sequence(selection)
+		tools.load_sequence(selection)
 
 
 if __name__=="__main__":

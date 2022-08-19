@@ -1,5 +1,7 @@
 import tkinter as tk
-from tools import plot_rectangle
+import tools
+
+import global_variables
 
 class MenuBar(tk.Menu):
 	def __init__(self, parent):
@@ -9,10 +11,13 @@ class MenuBar(tk.Menu):
 		file_menu = tk.Menu(self)
 		edit_menu = tk.Menu(self)
 		tools_menu = tk.Menu(self)
+		view_menu = tk.Menu(self)
 
 		# add a menu item to the menu
 		file_menu.add_command(label='Exit', command=parent.destroy)
-		edit_menu.add_command(label='Plot', command= lambda : plot_rectangle(canvas1))
+		file_menu.add_command(label='Open', command= tools.open_file)
+		edit_menu.add_command(label='Plot', command= lambda : tools.plot_rectangle(canvas1))
+		view_menu.add_command(label='Zoom In', command=tools.zoom_in)
 		tools_menu.add_command(label='About')
 
 
@@ -21,6 +26,7 @@ class MenuBar(tk.Menu):
 		self.add_cascade(label="File", menu=file_menu)
 		self.add_cascade(label="Edit", menu=edit_menu)
 		self.add_cascade(label="Tools", menu=tools_menu)
+		self.add_cascade(label="View", menu=view_menu)
 
 
 
