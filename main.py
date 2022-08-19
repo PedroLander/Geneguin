@@ -27,8 +27,6 @@ if __name__=="__main__":
 	zoomIn.pack(side='left')
 	zoomOut= tk.Button(toolBar, text="Zoom out", command = tools.zoom_out)
 	zoomOut.pack(side='left')
-	loadRect= tk.Button(toolBar, text="Load Rectangle", command = lambda: tools.plot_text(global_variables.seqCanvas))
-	loadRect.pack(side='left')
 	
 #---------left paned window----------
 	left = tk.PanedWindow()
@@ -61,7 +59,6 @@ if __name__=="__main__":
 	global_variables.seqCanvas.pack(fill = 'both', expand = True)
 	
 	global_variables.viewNotebook.add(global_variables.seqCanvas, text= 'Sequence View')
-
 
 
 #------------------- control panel-----------------------

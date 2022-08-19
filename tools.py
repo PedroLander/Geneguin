@@ -41,8 +41,6 @@ def load_sequence(seqName):
 	print (lenght)
 
 
-
-
 def zoom_in():
 	x = global_variables.seqCanvas.winfo_width()
 	y = global_variables.seqCanvas.winfo_height()

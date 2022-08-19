@@ -21,7 +21,6 @@ class MenuBar(tk.Menu):
 		tools_menu.add_command(label='About')
 
 
-
 		# add the File menu to the menubar
 		self.add_cascade(label="File", menu=file_menu)
 		self.add_cascade(label="Edit", menu=edit_menu)
