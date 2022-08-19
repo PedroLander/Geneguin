@@ -39,30 +39,37 @@ if __name__=="__main__":
 	menuBar1 = MenuBar(root)
 	root.config(menu=menuBar1)
 	
+	
+	#PanedWindow
+	pw = tk.PanedWindow()
+	pw.pack(fill='both', expand='true')
+	
 	#Navigation panel
 	navPanel1= NavPanel(root)
 	navPanel1.pack(side='left', fill='y', expand=False)
 	
-	#View panel
-	viewPanel1= ViewPanel(root)
-	viewPanel1.pack(fill='both', expand=True)
+	pw.add(navPanel1)
 	
-	global_variables.mapCanvas = MapCanvas(viewPanel1)
+	#View panel
+	global_variables.viewPanel1= ViewPanel(root)
+	global_variables.viewPanel1.pack(fill='both', expand=True)
+	
+	global_variables.mapCanvas = MapCanvas(global_variables.viewPanel1)
 	global_variables.mapCanvas.pack(side = 'top', fill = 'both', expand = True)
 	
-	seqCanvas = SeqCanvas(viewPanel1)
-	seqCanvas.pack(side = 'top', fill = 'both', expand = True)
+	global_variables.seqCanvas = SeqCanvas(global_variables.viewPanel1)
+	global_variables.seqCanvas.pack(side = 'top', fill = 'both', expand = True)
 	
-	viewPanel1.add(global_variables.mapCanvas, text= 'Sequence View')
-	viewPanel1.add(seqCanvas, text= 'Map View')
+	global_variables.viewPanel1.add(global_variables.seqCanvas, text= 'Sequence View')
+	global_variables.viewPanel1.add(global_variables.mapCanvas, text= 'Map View')
 	
 	#Control Panel
 	controlPanel1= ViewPanel(root)
 	controlPanel1.pack(fill='both', expand=True)
 	
-	canvas3= MyView(viewPanel1)
+	canvas3= MyView(global_variables.viewPanel1)
 	canvas3.pack(fill = 'both', expand = True)
-	canvas4 = MyView(viewPanel1)
+	canvas4 = MyView(global_variables.viewPanel1)
 	canvas4.pack(fill = 'both', expand = True)
 	
 	controlPanel1.add(canvas3, text= 'Canvas 3')

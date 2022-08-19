@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-from tools import load_sequence
+import tools
 
 # create a treeview
 class NavPanel(ttk.Treeview): 
@@ -35,7 +35,8 @@ class NavPanel(ttk.Treeview):
 	def on_dclick(self, event):
 		selection = self.selection()
 		print('Selection is %s' % ascii(selection))
-		load_sequence(selection)
+		tools.load_nuc_sequence(selection)
+		tools.load_map_sequence(selection)
 
 
 if __name__=="__main__":
