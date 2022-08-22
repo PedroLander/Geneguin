@@ -40,29 +40,28 @@ if __name__=="__main__":
 	left.add(right)
 
 #--------view panel--------------------
-##-------view Frame---------------------
-	global_variables.viewFrame= tk.Frame(right, bg='red')
-	global_variables.viewFrame.pack(fill='both', expand=True)
-	right.add(global_variables.viewFrame)
+
+	##-------view notebook-----------
+	global_variables.viewPanel= ttk.Notebook(right)
+	right.add(global_variables.viewPanel)
+
+####-----view canvas frame----
+	global_variables.canvasFrame = tk.Frame(global_variables.viewPanel)
+	global_variables.canvasFrame.pack(fill='both', expand = True)
+	
+	global_variables.viewPanel.add(global_variables.canvasFrame, text='Sequence View')
 
 ###------view scrollbar---------------
-	map_scroll = tk.Scrollbar(global_variables.viewFrame, orient = 'horizontal')
+	map_scroll = tk.Scrollbar(global_variables.viewPanel, orient = 'horizontal')
 	map_scroll.pack(side='bottom', fill='x')
-	
-###-------view notebook-----------
-	global_variables.viewNotebook = ttk.Notebook(global_variables.viewFrame)
-	global_variables.viewNotebook.pack(side='top', fill='both', expand=True)
-
 
 ####-----view canvases---------
-	global_variables.seqCanvas = SeqCanvas(global_variables.viewNotebook)
+	global_variables.seqCanvas = SeqCanvas(global_variables.viewPanel)
 	global_variables.seqCanvas.pack(fill = 'both', expand = True)
-	
-	global_variables.viewNotebook.add(global_variables.seqCanvas, text= 'Sequence View')
 
 
 #------------------- control panel-----------------------
-	global_variables.controlPanel = ttk.Notebook()
+	global_variables.controlPanel = ttk.Notebook(right)
 	right.add(global_variables.controlPanel)
 
 	canvas3= MyView(global_variables.controlPanel)

@@ -5,6 +5,7 @@ import parsers
 import global_variables
 
 
+
 def load_sequence(seqName):
 	#takes the name of the sequence, and gets the seq from the dictionar
 	#plot each nucleotide in the seq canvas
@@ -38,8 +39,8 @@ def load_sequence(seqName):
 		text = nt,
 		fill="black", 
 		font=('Helvetica 15 bold'))
+		
 	print (lenght)
-
 
 def zoom_in():
 	x = global_variables.seqCanvas.winfo_width()
@@ -47,6 +48,7 @@ def zoom_in():
 	factor = 1.3 
 	print (x, y, x/2, y/2)
 	global_variables.seqCanvas.scale('all', x/2, y/2, factor, factor)
+	global_variables.seqCanvas.configure(scrollregion=global_variables.seqCanvas.bbox("all"))
 
 def zoom_out():
 	x = global_variables.seqCanvas.winfo_width()

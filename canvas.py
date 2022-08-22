@@ -7,8 +7,10 @@ class SeqCanvas(tk.Canvas):
 		super().__init__()
 		self.configure(bg='black')
 
+		self.bind('<Button 1>', lambda event: self.current.identify)
 		self.bind('<ButtonPress-1>', lambda event: self.scan_mark(event.x, event.y))
 		self.bind("<B1-Motion>", lambda event: self.scan_dragto(event.x, event.y, gain=1))
+		
 		
 
 if __name__=="__main__":

@@ -21,7 +21,9 @@ class NavPanel(ttk.Treeview):
 
 	def on_dclick(self, event):
 		selection = self.selection()
-		tools.load_sequence(selection)
+		try:
+			tools.load_sequence(selection)
+		except: pass
 
 
 if __name__=="__main__":
